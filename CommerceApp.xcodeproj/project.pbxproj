@@ -140,6 +140,20 @@
 			path = Cart;
 			sourceTree = "<group>";
 		};
+		0926AFF02A8575A8005EB99F /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				BC3F88932A850977000FDFE4 /* GridView */,
+				0926AFDE2A85520F005EB99F /* CustomerStepperView.swift */,
+				0926AFE02A8555AD005EB99F /* GYTDImagePickerView.swift */,
+				BC3F88A72A851B35000FDFE4 /* ImageUIView.swift */,
+				BC3F88712A84F4A7000FDFE4 /* JCProgeressUIView.swift */,
+				BC3F88B22A8522C5000FDFE4 /* PagingView.swift */,
+				BC3F88B02A8522A6000FDFE4 /* HTMLFormattedText.swift */,
+			);
+			path = CustomView;
+			sourceTree = "<group>";
+		};
 		1DC7E739A7D2A111D9F3C1A6 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -198,21 +212,13 @@
 		BC3F88572A84ECA3000FDFE4 /* Application */ = {
 			isa = PBXGroup;
 			children = (
-				0926AFE72A85689B005EB99F /* Cart */,
+				0926AFF02A8575A8005EB99F /* CustomView */,
 				0926AFE22A856431005EB99F /* Realm */,
-				BC3F88A92A852055000FDFE4 /* Product */,
-				BC3F889E2A850F6D000FDFE4 /* CategoryDetails */,
-				BC3F88932A850977000FDFE4 /* GridView */,
 				BC3F88842A85069D000FDFE4 /* CustomTextView */,
-				BC3F88712A84F4A7000FDFE4 /* JCProgeressUIView.swift */,
 				BC3F886E2A84F36F000FDFE4 /* Model */,
 				BC3F88632A84F1B9000FDFE4 /* API Manager */,
 				BC3F885E2A84EEAF000FDFE4 /* View+ViewModel */,
 				BC3F88472A84E766000FDFE4 /* CommerceAppApp.swift */,
-				BC3F88A52A851B05000FDFE4 /* ProductCellUIView.swift */,
-				BC3F88A72A851B35000FDFE4 /* ImageUIView.swift */,
-				0926AFDE2A85520F005EB99F /* CustomerStepperView.swift */,
-				0926AFE02A8555AD005EB99F /* GYTDImagePickerView.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -231,6 +237,9 @@
 		BC3F885E2A84EEAF000FDFE4 /* View+ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				BC3F889E2A850F6D000FDFE4 /* CategoryDetails */,
+				0926AFE72A85689B005EB99F /* Cart */,
+				BC3F88A92A852055000FDFE4 /* Product */,
 				BC3F885D2A84EDBC000FDFE4 /* Home */,
 			);
 			path = "View+ViewModel";
@@ -293,8 +302,7 @@
 		BC3F88A92A852055000FDFE4 /* Product */ = {
 			isa = PBXGroup;
 			children = (
-				BC3F88B22A8522C5000FDFE4 /* PagingView.swift */,
-				BC3F88B02A8522A6000FDFE4 /* HTMLFormattedText.swift */,
+				BC3F88A52A851B05000FDFE4 /* ProductCellUIView.swift */,
 				BC3F88AE2A8521B2000FDFE4 /* ProductDetailsSliderUIView.swift */,
 				BC3F88AB2A852062000FDFE4 /* ProductDetailsView.swift */,
 				BC3F88AA2A852062000FDFE4 /* ProductDetailsViewModel.swift */,
