@@ -6,28 +6,30 @@
 //
 
 import SwiftUI
-import SSSwiftUIGIFView
+
 
 struct JCProgeressUIView<Content>: View where Content: View {
     
     @Binding var isShowing: Bool
-    var content: () -> Content
-    
-    var body: some View {
-        GeometryReader { geometry in
-            ZStack(alignment: .center) {
-                self.content()
-                    .disabled(self.isShowing)
-                    .background(Color("F8F8F8"))
-                ZStack {
-                    SwiftUIGIFPlayerView(gifName: "loading") .frame(width: 250,height: 250)
-                    UrbanistMediumTextView(text: "Loading...", fontSize: 18, colorName: "191B32")
-                }.opacity(self.isShowing ? 1 : 0)
-                
-            }
-        }
-        
-    }
+      var content: () -> Content
+      
+      var body: some View {
+          ZStack(alignment: .center) {
+              self.content()
+                  .disabled(self.isShowing)
+                  .blur(radius: self.isShowing ? 3 : 0)
+              
+              ProgressView()
+                  .progressViewStyle(.circular)
+                  .frame(width: 100,height: 100)
+                  .background(Color.secondary.colorInvert())
+                  .foregroundColor(Color.primary)
+                  .cornerRadius(20)
+                  .opacity(self.isShowing ? 1 : 0)
+              
+          }
+          
+      }
 }
 
 struct JCProgeressUIView_Previews: PreviewProvider {

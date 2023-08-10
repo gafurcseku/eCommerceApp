@@ -48,16 +48,7 @@ class APIClient {
         sessionManager.retrier = OAuth2Handler()
     }
     
-    private var biHeaders: [String:String]? {
-        let accesToken = Helper.accessToken
-        if accesToken.isEmpty {return nil}
-        let token = "Bearer " + accesToken
-        print(token)
-#if DEBUG
-      //  print(token)
-#endif
-        return ["Authorization" :  token, "deviceType":"iOS","deviceId":Helper.deviceID , "appVersion": Helper.appVersion,"deviceName":Helper.getDeviceName]
-    }
+ 
     
     // Cast response into a given model
     func objectAPICall<T: Mappable>(apiEndPoint: DSEndpoint,modelType: T.Type, content:[String] = ["application/json"], isToken:Bool = true, completion: @escaping CompletionHandler<T>) {
@@ -67,7 +58,7 @@ class APIClient {
 //#endif
         
         
-        sessionManager.request(apiEndPoint.path, method: apiEndPoint.method, parameters: apiEndPoint.query, encoding: apiEndPoint.encoding, headers: isToken ? biHeaders : nil)
+        sessionManager.request(apiEndPoint.path, method: apiEndPoint.method, parameters: apiEndPoint.query, encoding: apiEndPoint.encoding)
             .debugLog()
             .validate(statusCode: 200..<300)
             .validate(contentType: content)
@@ -125,7 +116,7 @@ class APIClient {
 #if DEBUG
         print(apiEndPoint.path)
 #endif
-        sessionManager.request(apiEndPoint.path, method: apiEndPoint.method, parameters: apiEndPoint.query, encoding: apiEndPoint.encoding, headers: biHeaders)
+        sessionManager.request(apiEndPoint.path, method: apiEndPoint.method, parameters: apiEndPoint.query, encoding: apiEndPoint.encoding)
             .validate(statusCode: 200..<300)
             .responseObject { (response: DataResponse<T>) in
                 print(response)
@@ -133,7 +124,7 @@ class APIClient {
                 case .success(let value):
                     completion(Result.success(value as! [T]))
                 case .failure(let error):
-                    DLog(error.localizedDescription)
+                   
                     guard let statusCode = response.response?.statusCode else {
                         let unKnownError = ErrorResponse(-999, response.data, error)
                         completion(Result.failure(unKnownError))

@@ -29,7 +29,7 @@ struct CommerceCategoryCellView: View {
             
             VStack {
                 Spacer()
-                UrbanistMediumTextView  (text: name, fontSize: 12, colorName: "191B32")
+                UrbanistMediumTextView  (text: name, fontSize: 12, colorName: "000000")
                     .multilineTextAlignment(.center)
                     .padding(.horizontal,10)
                     
