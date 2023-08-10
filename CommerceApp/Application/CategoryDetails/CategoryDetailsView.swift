@@ -34,7 +34,7 @@ struct CategoryDetailsView: View {
             
             if(viewModel.allProducts.productList.count > 0){
                 ScrollView(.vertical,showsIndicators: false){
-                    LazyGridView(itemCount:  viewModel.allProducts.productList.count, columnCount: 2, cellSpacing: 5) { index in
+                    LazyGridView(itemCount:  viewModel.allProducts.productList.count, columnCount: 2, cellSpacing: 10) { index in
                         let product = viewModel.allProducts.productList[index]
                         NavigationLink(destination:  ProductDetailsView(slug: product.getSlug)){
                             ProductCellUIView(imageString: product.getProductImage, name: product.getName, selling: product.getVariations.getPrice.getNewPrice, price: product.getVariations.getPrice.getOldPrice, discountType: product.getVariations.getProductDiscount.getDisCountType, stock: product.getVariations.getStock, imageCount: 2)
@@ -44,9 +44,10 @@ struct CategoryDetailsView: View {
                         
                     }
                 }
-                .padding([.leading,.trailing],25)
+                .padding([.leading,.trailing],15)
             }
         }
+        .background(Color("F8F8F8"))
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
         .onAppear{
@@ -57,6 +58,6 @@ struct CategoryDetailsView: View {
 
 struct CategoryDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        CategoryDetailsView()
+        CategoryDetailsView(categoryName: "Sample",categoryId: "63cbbc67c1b28d4697e507f8")
     }
 }

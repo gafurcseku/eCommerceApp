@@ -8,23 +8,35 @@
 import SwiftUI
 
 struct CommerceUIView: View {
-    @Environment(\.presentationMode) var presentationMode:Binding<PresentationMode>
+    
     @StateObject var viewModel = FashionViewModel()
+    
+    @State private var showingOptions = false
+       @State private var shouldPresentImagePicker = false
+       @State private var shouldPresentCamera = false
+       @State private var image: Image? = Image("photo")
+    
     var body: some View {
         NavigationView{
             VStack{
                 VStack(spacing:0) {
                     HStack{
-                        Button {
-                            self.presentationMode.wrappedValue.dismiss()
-                        } label: {
-                            Image("back_black_icon")
-                        }
+                        
                         Spacer()
                         
                         
                         UrbanistSemiBoldTextView(text: "E-Commerce", fontSize: 16, colorName: "000000")
                         Spacer()
+                        
+                        Button {
+                            showingOptions.toggle()
+                        } label: {
+                            if let image = self.image {
+                                image.resizable().frame(width: 25,height: 25)
+                            }
+                            
+                        }
+
                         
                     }
                     .padding(.horizontal,15)
@@ -49,6 +61,31 @@ struct CommerceUIView: View {
             .onAppear {
                 viewModel.getCategories()
             }
+            .sheet(isPresented: $shouldPresentImagePicker) {
+                       GYTDImagePickerView(sourceType: self.shouldPresentCamera ? .camera : .photoLibrary,image: self.$image,isPresented:self.$shouldPresentImagePicker) { ( isSuccess, data) in
+                           if(isSuccess){
+                               if let image = data {
+                                  
+                               }
+                           }
+                       }
+                       
+                   }
+            .actionSheet(isPresented: self.$showingOptions){
+                      ActionSheet( title: Text("Select a option"),  buttons: [
+                          .default(Text("Camera")) {
+                              self.shouldPresentImagePicker = true
+                              self.shouldPresentCamera = true
+                          },
+                          
+                              .default(Text("Gallery")) {
+                                  self.shouldPresentImagePicker = true
+                                  self.shouldPresentCamera = false
+                              },
+                          
+                          ActionSheet.Button.cancel()
+                      ])
+                  }
         }
     }
 }

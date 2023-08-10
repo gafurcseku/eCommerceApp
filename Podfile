@@ -13,6 +13,10 @@ target 'CommerceApp' do
     
     #Pod For Image Downloading and Caching Library
     pod 'SDWebImageSwiftUI'
+    
+    
+    # Pods for RealmSwift
+     pod 'RealmSwift', '~>10'
 
   # Pods for CommerceApp
 

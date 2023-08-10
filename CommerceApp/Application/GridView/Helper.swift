@@ -30,4 +30,13 @@ struct Helper {
              }
          }
      }
+    
+    static func setImage(to image:Data) {
+            UserDefaults.standard.set(image, forKey: "IMAGES")
+            UserDefaults.standard.synchronize()
+    }
+    
+    static var getImage: Data? {
+            return UserDefaults.standard.data(forKey: "IMAGES")
+        }
 }
